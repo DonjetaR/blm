@@ -1,6 +1,6 @@
 ---
 title: "Bayesian linear regression"
-author: "Your Name"
+author: "Donjeta Runjeva"
 date: "`r Sys.Date()`"
 output:
   md_document:
