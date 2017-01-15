@@ -11,7 +11,7 @@ test_that("blm", {
   fit=blm(model,alpha,beta)
 })
 
-
+context("prior")
 
 test_that("alpha is zero", {
   #alpha=1
