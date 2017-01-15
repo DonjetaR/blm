@@ -196,7 +196,7 @@ fitted.blm= function(x,...){
 #'
 #' @return A fitted model.
 #' @export
-plots.blm = function(x,...){
+plot.blm = function(x,...){
   variables = names(coefficients(x))
 
   plot(x$formula[,2],x$formula[,1],xlab=variables[2], ylab="y")
