@@ -7,7 +7,7 @@
 \method{coefficients}{blm}(x)
 }
 \arguments{
-\item{model}{A formula describing the model.}
+\item{x}{A formula describing the model.}
 }
 \value{
 A fitted model.

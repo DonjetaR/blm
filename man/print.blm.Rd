@@ -7,12 +7,9 @@
 \method{print}{blm}(x, ...)
 }
 \arguments{
-\item{...}{Additional data, for example a data frame. Feel free to add other options.}
+\item{x}{A formula describing the model.}
 
-\item{model}{A formula describing the model.}
-}
-\value{
-A fitted model.
+\item{...}{Additional data, for example a data frame. Feel free to add other options.}
 }
 \description{
 Fits a model, given as a formula, optionally with data provided through the "..." parameter.

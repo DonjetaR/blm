@@ -84,7 +84,7 @@ blm <- function(model, alpha,beta,...) {
 #'
 #' Fits a model, given as a formula, optionally with data provided through the "..." parameter.
 #'
-#' @param model   A formula describing the model.
+#' @param x   A formula describing the model.
 #' @return A fitted model.
 #' @export
 coefficients.blm= function(x){
@@ -100,12 +100,13 @@ coefficients.blm= function(x){
 #'
 #' Fits a model, given as a formula, optionally with data provided through the "..." parameter.
 #'
-#' @param model   A formula describing the model.
+#' @param x   A formula describing the model.
+#' @param level   A formula describing the model.
 #' @param ...     Additional data, for example a data frame. Feel free to add other options.
 #'
 #' @return A fitted model.
 #' @export
-confint.blm <- function(x, level = 0.95, ...){
+confint <- function(x, level = 0.95, ...){
   a=c((1-level)/2, 1-(1-level)/2)
 
   variables = names(coefficients(x))
@@ -126,12 +127,12 @@ confint.blm <- function(x, level = 0.95, ...){
 #'
 #' Fits a model, given as a formula, optionally with data provided through the "..." parameter.
 #'
-#' @param model   A formula describing the model.
+#' @param x   A formula describing the model.
 #' @param ...     Additional data, for example a data frame. Feel free to add other options.
 #'
 #' @return A fitted model.
 #' @export
-deviance.blm= function(x,...){
+deviance= function(x,...){
 
   sum((x$formula[,1]-fitted(x))^2)
 
@@ -141,12 +142,12 @@ deviance.blm= function(x,...){
 #'
 #' Fits a model, given as a formula, optionally with data provided through the "..." parameter.
 #'
-#' @param model   A formula describing the model.
+#' @param x   A formula describing the model.
 #' @param ...     Additional data, for example a data frame. Feel free to add other options.
 #'
 #' @return A fitted model.
 #' @export
-predict.blm<- function(x, ...){
+predict<- function(x, ...){
 
 
   responseless.formula <- delete.response(terms(x$formula))
@@ -173,13 +174,13 @@ predict.blm<- function(x, ...){
 #'
 #' Fits a model, given as a formula, optionally with data provided through the "..." parameter.
 #'
-#' @param model   A formula describing the model.
+#' @param x   A formula describing the model.
 #' @param ...     Additional data, for example a data frame. Feel free to add other options.
 #'
 #' @return A fitted model.
 #' @export
-
-fitted.blm= function(x,...){
+#fitted.blm <- function(x, ...) UseMethod("fitted")
+fitted= function(x,...){
 
   predict(x,...)
 }
@@ -189,12 +190,12 @@ fitted.blm= function(x,...){
 #'
 #' Fits a model, given as a formula, optionally with data provided through the "..." parameter.
 #'
-#' @param model   A formula describing the model.
+#' @param x   A formula describing the model.
 #' @param ...     Additional data, for example a data frame. Feel free to add other options.
 #'
 #' @import graphics
 #' @export
-plot.blm = function(x,...){+
+plot.blm = function(x,...){
   variables = names(coefficients(x))
 
   plot(x$formula[,2],x$formula[,1],xlab=variables[2], ylab="y")
@@ -208,10 +209,9 @@ plot.blm = function(x,...){+
 #'
 #' Fits a model, given as a formula, optionally with data provided through the "..." parameter.
 #'
-#' @param model   A formula describing the model.
+#' @param x   A formula describing the model.
 #' @param ...     Additional data, for example a data frame. Feel free to add other options.
 #'
-#' @return A fitted model.
 #' @export
 print.blm <- function(x,...){
   cat('\nCall:\n')
@@ -227,12 +227,13 @@ print.blm <- function(x,...){
 #'
 #' Fits a model, given as a formula, optionally with data provided through the "..." parameter.
 #'
-#' @param model   A formula describing the model.
+#' @param x   A formula describing the model.
 #' @param ...     Additional data, for example a data frame. Feel free to add other options.
 #'
 #' @return A fitted model.
 #' @export
-residuals.blm = function(x,...){
+
+residuals= function(x,...){
 
   residuals=(x$formula[,1]-fitted(x))
   residuals
@@ -240,25 +241,4 @@ residuals.blm = function(x,...){
 
 
 
-#' Bayesian linear model.
-#'
-#' Fits a model, given as a formula, optionally with data provided through the "..." parameter.
-#'
-#' @param model   A formula describing the model.
-#' @param ...     Additional data, for example a data frame. Feel free to add other options.
-#'
-#' @return A fitted model.
-#' @export
-summary.blm <- function(x, ...){
-  cat('\nCall:\n')
-  print(x$func_call)
 
-  cat('\nCoefficients:\n')
-  print(coefficients.blm(x))
-
-  cat('\nResiduals:\n')
-  print(residuals.blm(x))
-
-  cat('\nDeviance:\n')
-  print(deviance.blm(x))
-}
