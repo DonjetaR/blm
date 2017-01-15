@@ -72,8 +72,9 @@ blm <- function(model, alpha,beta,...) {
                  prior=prior,
                  posterior=posterior,
                  mean=posterior$mean,
-                 covar=posterior$Sigma),
-            class="blm")
+                 covar=posterior$Sigma,
+                 func_call = sys.call()),
+                 class="blm")
 }
 
 
@@ -259,4 +260,7 @@ summary.blm <- function(x, ...){
 
   cat('\nResiduals:\n')
   print(residuals.blm(x))
+
+  cat('\nDeviance:\n')
+  print(deviance.blm(x))
 }
