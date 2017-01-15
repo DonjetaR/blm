@@ -8,8 +8,6 @@
 }
 \arguments{
 \item{model}{A formula describing the model.}
-
-\item{...}{Additional data, for example a data frame. Feel free to add other options.}
 }
 \value{
 A fitted model.

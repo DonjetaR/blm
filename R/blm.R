@@ -59,7 +59,7 @@ update <- function(model, prior, beta ,...) {
 #' @param alpha   Alpha
 #' @param beta    Beta
 #' @param ...     Additional data, for example a data frame. Feel free to add other options.
-#'
+#' @import stats
 #' @return A fitted model.
 #' @export
 blm <- function(model, alpha,beta,...) {
@@ -85,8 +85,6 @@ blm <- function(model, alpha,beta,...) {
 #' Fits a model, given as a formula, optionally with data provided through the "..." parameter.
 #'
 #' @param model   A formula describing the model.
-#' @param ...     Additional data, for example a data frame. Feel free to add other options.
-#'
 #' @return A fitted model.
 #' @export
 coefficients.blm= function(x){
@@ -107,17 +105,17 @@ coefficients.blm= function(x){
 #'
 #' @return A fitted model.
 #' @export
-confint.blm <- function(object, level = 0.95, ...){
+confint.blm <- function(x, level = 0.95, ...){
   a=c((1-level)/2, 1-(1-level)/2)
 
-  variables = names(coefficients(object))
+  variables = names(coefficients(x))
   m <- matrix(0, nrow=length(variables), ncol=2)
   colnames(m) <- c(paste(a[1]*100, "%"), paste(a[2]*100, "%"))
   rownames(m) = variables
 
   for(i in variables){
-    m[i,1] = qnorm(a[1], mean=object$mean[i,1], sd=sqrt(object$covar[i,i]))
-    m[i,2] = qnorm(a[2], mean=object$mean[i,1], sd=sqrt(object$covar[i,i]))
+    m[i,1] = qnorm(a[1], mean=x$mean[i,1], sd=sqrt(x$covar[i,i]))
+    m[i,2] = qnorm(a[2], mean=x$mean[i,1], sd=sqrt(x$covar[i,i]))
 
   }
   m
@@ -148,15 +146,15 @@ deviance.blm= function(x,...){
 #'
 #' @return A fitted model.
 #' @export
-predict.blm<- function(object, ...){
+predict.blm<- function(x, ...){
 
 
-  responseless.formula <- delete.response(terms(object$formula))
+  responseless.formula <- delete.response(terms(x$formula))
   frame <- model.frame(responseless.formula, ...)
   phi <- model.matrix(responseless.formula, frame)
 
 
-  m=object$mean
+  m=x$mean
   #(t(m))
   means=vector(length=nrow(phi ))
 
@@ -194,9 +192,9 @@ fitted.blm= function(x,...){
 #' @param model   A formula describing the model.
 #' @param ...     Additional data, for example a data frame. Feel free to add other options.
 #'
-#' @return A fitted model.
+#' @import graphics
 #' @export
-plot.blm = function(x,...){
+plot.blm = function(x,...){+
   variables = names(coefficients(x))
 
   plot(x$formula[,2],x$formula[,1],xlab=variables[2], ylab="y")

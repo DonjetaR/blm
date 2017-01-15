@@ -4,7 +4,7 @@
 \alias{predict.blm}
 \title{Bayesian linear model.}
 \usage{
-\method{predict}{blm}(object, ...)
+\method{predict}{blm}(x, ...)
 }
 \arguments{
 \item{...}{Additional data, for example a data frame. Feel free to add other options.}

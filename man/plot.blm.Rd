@@ -11,9 +11,6 @@
 
 \item{model}{A formula describing the model.}
 }
-\value{
-A fitted model.
-}
 \description{
 Fits a model, given as a formula, optionally with data provided through the "..." parameter.
 }

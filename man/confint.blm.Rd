@@ -4,7 +4,7 @@
 \alias{confint.blm}
 \title{Bayesian linear model.}
 \usage{
-\method{confint}{blm}(object, level = 0.95, ...)
+\method{confint}{blm}(x, level = 0.95, ...)
 }
 \arguments{
 \item{...}{Additional data, for example a data frame. Feel free to add other options.}
