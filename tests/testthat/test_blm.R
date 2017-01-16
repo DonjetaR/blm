@@ -13,7 +13,7 @@ test_that("test blm", {
   fit=blm(model,alpha,beta)
   coef_blm=coefficients(fit)
   #names(coef_blm)=NULL
-  #expect_equal(coef_blm[1],a,tolerance=0.1)
+  #expect_equal(coef_blm[1],1, tolerance=0.1)
   expect_error(blm(model,alpha=0,beta))
   expect_error(blm(model,alpha,beta=-1))
   expect_true(all(!sapply(blm, is.null)))
@@ -63,7 +63,10 @@ test_that("test coefficients", {
   fit_lm= lm(y~x)
   coef_fit_blm= coefficients(fit_blm)
   coef_fit_lm= coef(fit_lm)
-  #expect_equal(coef_fit_blm, coef_fit_lm, tolerance=0.1)
+  expect_equal(coef_fit_blm[1], coef_fit_lm[1], tolerance=1)
+  expect_equal(coef_fit_blm[2], coef_fit_lm[2], tolerance=1)
+  expect_true(all(!sapply(coefficients, is.null)))
+
 
 })
 
@@ -79,7 +82,7 @@ test_that("test deviance", {
   deviance_blm=deviance(fit_blm)
   deviance_lm=stats::deviance(fit_lm)
 
-  #expect_equal(deviance_blm,deviance_lm,tolerance=0.1)
+  expect_equal(deviance_blm[1],deviance_lm[1], tolerance=1)
 })
 
 test_that("test plot", {

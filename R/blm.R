@@ -28,7 +28,7 @@ make_prior <- function(alpha,model){
 #' @param beta   Beta
 #' @param ...     Additional data, for example a data frame. Feel free to add other options.
 #'
-#' @return A fitted model.
+#' @return mean and sigma
 update <- function(model, prior, beta ,...) {
 
 
