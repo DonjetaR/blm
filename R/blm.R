@@ -63,6 +63,11 @@ update <- function(model, prior, beta ,...) {
 #' @return A fitted model.
 #' @export
 blm <- function(model, alpha,beta,...) {
+  if (alpha<1 || beta<1){
+    print("Invalid alpha or beta")
+    break
+  }
+
 
   prior <- make_prior(alpha, model)
   posterior <- update(model, prior, beta)
@@ -70,6 +75,8 @@ blm <- function(model, alpha,beta,...) {
 
   structure(list(formula=model.frame(model),
                  prior=prior,
+                 alpha=alpha,
+                 beta=beta,
                  posterior=posterior,
                  mean=posterior$mean,
                  covar=posterior$Sigma,

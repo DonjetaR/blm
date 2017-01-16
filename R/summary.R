@@ -12,7 +12,7 @@ summary<- function(x, ...){
   print(x$func_call)
 
   cat('\nCoefficients:\n')
-  print(coefficients.blm(x))
+  print(coefficients(x))
 
   cat('\nResiduals:\n')
   print(residuals(x))

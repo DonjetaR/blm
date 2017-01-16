@@ -10,6 +10,15 @@
 #' @return A fitted model.
 #' @export
 confint <- function(x, level = 0.95, ...){
+  if(level<0){
+    print("Confidence interval should be between 0 and 1")
+    break
+  }
+  if(level>1){
+    print("Confidence interval should be between 0 and 1")
+    break
+  }
+
   a=c((1-level)/2, 1-(1-level)/2)
 
   variables = names(coefficients(x))
