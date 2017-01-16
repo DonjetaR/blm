@@ -31,7 +31,7 @@ test_that("test confint", {
   fit_blm=blm(model,alpha,beta)
   fit_lm=lm(model)
 
-  #confint_fit_blm=blm::confint(fit_blm,level = 0.95)
+  confint_fit_blm=blm::confint(fit_blm,level = 0.95)
 
   expect_error(confint(fit_blm,level=-1))
   expect_error(confint(fit_blm,level=2))
