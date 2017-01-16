@@ -14,6 +14,9 @@ test_that("test blm", {
   coef_blm=coefficients(fit)
   #names(coef_blm)=NULL
   #expect_equal(coef_blm[1],a,tolerance=0.1)
+  expect_error(blm(model,alpha=0,beta))
+  expect_error(blm(model,alpha,beta=-1))
+  expect_true(all(!sapply(blm, is.null)))
 })
 
 
@@ -32,6 +35,9 @@ test_that("test confint", {
 
   expect_error(confint(fit_blm,level=-1))
   expect_error(confint(fit_blm,level=2))
+
+  expect_true(all(!sapply(confint, is.null)))
+
 
 })
 

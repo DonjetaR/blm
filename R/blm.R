@@ -30,10 +30,7 @@ make_prior <- function(alpha,model){
 #'
 #' @return A fitted model.
 update <- function(model, prior, beta ,...) {
-  if (!is.numeric(model.matrix(model))){
-    print("non-numerical Sigma")
-    break
-  }
+
 
   model_frame=model.frame(model)
   model_matrix=model.matrix(model)
