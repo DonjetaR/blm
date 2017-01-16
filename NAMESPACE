@@ -12,5 +12,3 @@ export(residuals)
 export(summary)
 import(graphics)
 import(stats)
-
-

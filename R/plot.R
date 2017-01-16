@@ -11,8 +11,11 @@
 plot.blm = function(x,...){
   variables = names(coefficients(x))
 
-  plot(x$formula[,2],x$formula[,1],xlab=variables[2], ylab="y")
+  plot(x$formula[,2],x$formula[,1],xlab=variables[2], ylab="y",main="Bayesian Regression")
   abline(x$mean[1],x$mean[2], col="red")
-
+  points(x$formula[,2],fitted(x),col="blue",pch=15)
+  legend("bottomright", c("Regression data","Regession Line", "Fitted data"),
+         col=c("black", "red","blue"),
+         pch = 1 )
 }
 

@@ -16,7 +16,7 @@ update(model, prior, beta, ...)
 \item{...}{Additional data, for example a data frame. Feel free to add other options.}
 }
 \value{
-A fitted model.
+mean and sigma
 }
 \description{
 Fits a model, given as a formula, optionally with data provided through the "..." parameter.
